@@ -17,7 +17,7 @@ angular.module('myModule', ['lexacode.vimeo']);
 
 ### Example
 ```html
-<angular-lexacode-vimeo video-id="76979871"></angular-lexacode-vimeo>
+<lexacode-vimeo-embed video-id="76979871"></lexacode-vimeo-embed>
 ```
 
 See the examples folder for more.

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple player API Use</title>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+
+<lexacode-vimeo-embed video-id="76979871" player="lePlayer"
+                      on-ready="onReady(data)"
+                      on-play="onPlay(data)"
+                      on-pause="onPause(data)"
+                      on-finish="onFinish(data)"
+                      on-play-progress="onPlayProgress(data)"
+                      on-seek="onSeek(data)"></lexacode-vimeo-embed>
+<br>
+
+<button ng-click="play()">Play</button>
+<button ng-click="pause()">Pause</button>
+<button ng-click="unload()">Unload</button>
+<button ng-click="seekTo(20)">Go to second 20</button>
+<br>
+<br>
+Status: {{status}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="../angular-lexacode-vimeo.js"></script>
+
+<script>
+    angular.module('myApp', ['lexacode.vimeo']).controller('myController', function ($scope) {
+        $scope.play = function () {
+            $scope.lePlayer.play();
+        };
+        $scope.pause = function () {
+            $scope.lePlayer.pause();
+        };
+        $scope.unload = function () {
+            $scope.lePlayer.unload();
+        };
+        $scope.seekTo = function (seconds) {
+            $scope.lePlayer.seekTo(seconds);
+        };
+        $scope.onReady = function () {
+            $scope.status = 'The video is ready!';
+        };
+        $scope.onPlay = function () {
+            $scope.status = 'The video has started!';
+        };
+        $scope.onPause = function () {
+            $scope.status = 'The video has been stopped';
+        };
+        $scope.onPlayProgress = function (data) {
+            $scope.status = data.seconds + 's played that is ' + data.percent + '% of ' + data.duration + ' seconds';
+        };
+        $scope.onFinish = function () {
+            $scope.status = 'The video has finished!';
+        };
+    });
+</script>
+</body>
+</html>
